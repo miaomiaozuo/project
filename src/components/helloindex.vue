@@ -1,0 +1,131 @@
+<template>
+    <div class="enterpriseIndex">
+        <header class="header">
+            <div class="head_left"><img src="/static/icons/logo.png" alt=""></div>
+            <ul class="header_center">
+                <li v-for="(item,index) in items">
+                    <a :class="flag==index?'header_active':''" @click="goModule(index,item.gorouter)">
+                        <i :class="item.iconfont"></i>{{item.name}}
+                    </a>
+                </li>
+            </ul>
+            <div class="header_right">
+
+            </div>
+        </header>
+        <router-view></router-view>
+    </div>  
+    
+</template>
+
+<script>
+export default {
+    name: "helloindex",
+    data(){
+        return {
+            items:[
+                {
+                    name:"企业首页",
+                    iconfont:'element-icons el-iconshouye',
+                    gorouter:"/home/enterprise"
+                },
+                 {
+                    name:"企业信息",
+                    iconfont:'element-icons el-iconkaohejilu',
+                    gorouter:"/home/information"
+                },
+                 {
+                    name:"现场管理",
+                    iconfont:'element-icons el-iconshouye',
+                    gorouter:"/home/local"
+                },
+                 {
+                    name:"风险管控",
+                    iconfont:'element-icons el-iconsaoyisao',
+                    gorouter:"/home/control/riskList"
+                },
+                 {
+                    name:"隐患管理",
+                    iconfont:'element-icons el-iconliebiao',
+                    gorouter:"/home/danger"
+                },
+                 {
+                    name:"系统设置",
+                    iconfont:'element-icons el-iconshezhi',
+                    gorouter:"/home/system"
+                },
+            ],
+            flag:1
+        }
+    },
+    methods:{
+        goModule(index,gorouter){
+            this.flag=index;
+            this.$router.push({path:gorouter});
+            
+        }
+    }
+
+}
+</script>
+
+<style scoped lang="scss">
+.enterpriseIndex{
+    width:100%;
+    height:100%;
+}
+    .header{
+        width: 100%;
+        height:90px;
+        background: #5187f4;
+        display: flex;
+        .head_left{
+            width: 140px;
+            height: 70px;
+            margin:0 20px;
+            text-align: left;
+            img{
+                margin-top:10px;
+            }
+            
+        }
+        .header_center{
+            flex:1;
+            display: flex;
+            margin:0;
+            li{
+                flex:1;
+                list-style: none;
+                color:#fff;
+                margin:0 20px;
+                a{
+                    display: inline-block;
+                    width: 120px;
+                    height: 30px;
+                    line-height: 30px;
+                    border-radius: 15px;
+                    margin-top:30px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: #fff;
+                    &.header_active{
+                        background: #fff;
+                        color:#5187f4;
+                    }
+                    
+                }
+                a:hover{
+                    background: #fff;
+                    color:#5187f4;
+                }
+                
+                i{
+                    margin:0 10px 0 0;
+                }
+            }
+        }
+        .header_right{
+            width: 180px;
+        }
+    }
+</style>
