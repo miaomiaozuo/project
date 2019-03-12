@@ -66,6 +66,7 @@ export default {
         min-height:90px;
         background: #fff;
         text-align: left;
+        display: flex;
         .left_center{
             display: inline-block;
             width: 180px;

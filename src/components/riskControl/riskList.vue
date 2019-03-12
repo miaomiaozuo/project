@@ -1,15 +1,19 @@
 <template>
-    <div class="enterpriseIndex">
-        <!-- <header class="header">
-            <div class="head_left"></div>
-        </header> -->...
-        234324
+    <div class="riskIndex">
+        <div class="buttoncrowd">
+            <el-button>添加风险点</el-button>
+            <el-button>添加评估</el-button>
+            <el-button>导出数据</el-button>
+            <el-button>导入数据</el-button>
+            <el-button>删除</el-button>
+        </div>
+
     </div>  
 </template>
 
 <script>
 export default {
-    name: "enterpriseIndex",
+    name: "riskList",
     data(){
         return {
 
@@ -20,10 +24,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .header{
-        height:70px;
-        .head_left{
-            background: url(/static/icons/logo.png) no-repeat;
-        }
+    .riskIndex{
+       width: 100%;
+       height: 100%;
+        
     }
 </style>
