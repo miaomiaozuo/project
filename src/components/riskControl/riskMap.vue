@@ -1,29 +1,57 @@
 <template>
-    <div class="enterpriseIndex">
-        <!-- <header class="header">
-            <div class="head_left"></div>
-        </header> -->...
-        234324
+    <div class="riskIndex">
+        <div class="buttoncrowd">
+            <div>
+                <span class="risktitle" >风险分布图</span>
+            </div>
+           
+            
+        </div>
+        <div class="buttoncrowd">
+           
+        </div>
+        
     </div>  
 </template>
 
 <script>
 export default {
-    name: "enterpriseIndex",
+    name: "riskList",
     data(){
         return {
-
+           
         }
+    },
+    methods:{
+        arraySpanMethod(){},
     }
 
 }
 </script>
 
 <style scoped lang="scss">
-    .header{
-        height:70px;
-        .head_left{
-            background: url(/static/icons/logo.png) no-repeat;
+    .riskIndex{
+       width: 100%;
+       height: 100%;
+        .buttoncrowd{
+            margin:10px;
+            clear: both;
+            min-height: 30px;
+            div{
+                .risktitle{
+                    color:#333;
+                    border-bottom:4px solid #409eff;
+                    text-decoration: none;
+                    padding:0 5px 5px;
+                    font-size: 14px;
+                }
+            }
+        }
+       .el-popover .tableUl{
+            b{
+                display: inline-block;
+                width:100px;
+            }
         }
     }
 </style>

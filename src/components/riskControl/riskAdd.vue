@@ -1,16 +1,13 @@
 <template>
     <div class="riskIndex">
         <div class="buttoncrowd">
-            <div style="float:left;">
-                <span class="risktitle">风险辨识清单</span>
+            <div style="float:left">
+                <span class="risktitle" >添加风险点 </span>
             </div>
-            <div style="float:right;">
-                <el-button size="mini"  type="primary" @click="goAdd(1)" >添加风险点</el-button>
-                <el-button size="mini"  type="primary" @click="goAdd(2)">添加评估</el-button>
-                <el-button size="mini"  type="primary">导出数据</el-button>
-                <el-button size="mini"  type="primary">导入数据</el-button>
-                <el-button size="mini"  type="warning">删除</el-button>
+            <div style="float:right;border:none;">
+                <el-button size="mini"  type="primary" @click="goBack">返回</el-button>
             </div>
+           
             
         </div>
         <div class="buttoncrowd">
@@ -28,22 +25,15 @@
                 <el-table-column align="right" prop="amount"  label="危险有害因素" >
                     <template slot-scope="scope"><span>{{scope.row.amount }}</span></template>
                 </el-table-column>
-                <el-table-column align="center" prop="payDateFormat" label="事故类型及后果" >
-                    <template slot-scope="scope"><span>{{scope.row.payDateFormat }}</span></template>
-                </el-table-column>
-                <el-table-column align="center" prop="receiveEnterpriseName" label="评估方法">
-                <template slot-scope="scope"><span>{{scope.row.receiveEnterpriseName}}</span></template>
-                </el-table-column>
-                <el-table-column align="center" prop="statusName" label="固有风险等级" >
+                
+               <el-table-column align="center" prop="statusName" label="现有风险等级" >
                     <template slot-scope="scope">
-                        <div style="background:#e6a23c;color:#fff;border-radius:6px">
-                            <i class="element-icons el-iconshandian"></i>一般风险<span>{{scope.row.statusName }}</span>
+                        <div style="background:#f56c6c;color:#fff;border-radius:6px">
+                            <i class="element-icons el-iconshandian"></i>较大风险<span>{{scope.row.statusName }}</span>
                         </div>
-                        
                     </template>
-                    
                 </el-table-column>
-                <el-table-column align="center" prop="createTimeFormat" label="现有管控措施" >
+                <el-table-column align="center" prop="createTimeFormat" label="管控层级" >
                     <template slot-scope="scope">
                         <el-popover
                             placement="right"
@@ -61,19 +51,15 @@
                         
                         <!-- <span>{{scope.row.createTimeFormat }}</span> --></template>
                 </el-table-column>
-                 <el-table-column align="center" prop="statusName" label="现有风险等级" >
-                    <template slot-scope="scope">
-                        <div style="background:#f56c6c;color:#fff;border-radius:6px">
-                            <i class="element-icons el-iconshandian"></i>较大风险<span>{{scope.row.statusName }}</span>
-                        </div>
-                    </template>
+                 
                     
-                </el-table-column>
-                <el-table-column align="center" prop="handle" label="操作">
+                
+                 <el-table-column align="center" prop="handle" label="操作">
                     <template slot-scope="scope">
-                        <el-button @click="detailRoute(scope.row.id)" type="primary" size="mini" >编辑评估</el-button>
+                        <el-button @click="detailRoute(scope.row.id)" type="primary" size="mini" >编辑修改</el-button>
                     </template>
                 </el-table-column>
+               
             </el-table>
         </div>
         
@@ -82,7 +68,7 @@
 
 <script>
 export default {
-    name: "riskList",
+    name: "riskAdd",
     data(){
         return {
             tableData:[
@@ -109,12 +95,9 @@ export default {
     },
     methods:{
         arraySpanMethod(){},
-        goAdd(ind){
-            if(ind==1){
-                this.$router.push({path:'/home/control/riskAdd',name:'riskAdd'})
-            }else if(ind==2){
-                this.$router.push({path:'/home/control/assessAdd',name:'assessAdd'})
-            }
+        goBack(){
+                this.$router.push({path:'/home/control',name:'riskList'})
+            
         }
     }
 

@@ -6,12 +6,14 @@ import EnterpriseIndex from '@/components/enterprise/index';//企业首页
 import InformationIndex from '@/components/information/index';//企业信息
 import LocalIndex from '@/components/localManagement/index';//现场管理
 import RiskControlIndex from '@/components/riskControl/index';//风险管理
-import RiskList from '@/components/riskControl/riskList';//风险辨识清单
-import DutyList from '@/components/riskControl/dutyList';//责任清单
-import ControlList from '@/components/riskControl/controlList';//管控措施清单
-import RiskMap from '@/components/riskControl/riskMap';//风险分布图
-import RiskStatistic from '@/components/riskControl/riskStatistic';//风险统计
-import RiskNotbook from '@/components/riskControl/riskNotbook';//风险防控手册
+    import RiskList from '@/components/riskControl/riskList';//风险辨识清单
+    import DutyList from '@/components/riskControl/dutyList';//责任清单
+    import ControlList from '@/components/riskControl/controlList';//管控措施清单
+    import RiskMap from '@/components/riskControl/riskMap';//风险分布图
+    import RiskStatistic from '@/components/riskControl/riskStatistic';//风险统计
+    import RiskNotbook from '@/components/riskControl/riskNotbook';//风险防控手册
+    import AssessAdd from '@/components/riskControl/assessAdd';//添加评估
+    import RiskAdd from '@/components/riskControl/riskAdd';//添加风险点
 import DangerIndex from '@/components/dangerManagement/index';//隐患管理
 import SystemIndex from '@/components/systemSetting/index';//系统设置
 Vue.use(Router)
@@ -45,7 +47,7 @@ export default new Router({
             component: RiskControlIndex,
             children: [
                 {
-                    path: 'riskList', 
+                    path: '/', 
                     name:'riskList',
                     component: RiskList
                 },
@@ -73,6 +75,16 @@ export default new Router({
                     path: 'riskNotbook', 
                     name:'riskNotbook',
                     component: RiskNotbook
+                },
+                {
+                    path: 'assessAdd', 
+                    name:'assessAdd',
+                    component: AssessAdd
+                },
+                {
+                    path: 'riskAdd', 
+                    name:'riskAdd',
+                    component: RiskAdd
                 },
 
             ]

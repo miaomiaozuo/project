@@ -7,7 +7,10 @@
                 </a>
             </li>
         </ul>
-        <router-view></router-view>
+        <div class="center">
+            <router-view></router-view>
+        </div>
+       
     </div>  
     
 </template>
@@ -23,7 +26,7 @@ export default {
                 },
                  {
                     name:"风险辨识清单",
-                    gorouter:"/home/control/riskList"
+                    gorouter:"/home/control"
                 },
                  {
                     name:"责任清单",
@@ -53,7 +56,30 @@ export default {
         goModule(index,gorouter){
             this.flag=index;
             this.$router.push({path:gorouter});
+            console.log(this.$route.path)
             
+        }
+    },
+    watch:{
+      '$route':function(to,from){
+           for(let i=0;i<this.items.length;i++){
+               if(to.path.indexOf(this.items[i].gorouter)!=-1){
+                // if(to.path==this.items[i].gorouter){
+                    this.flag=i;
+                }
+            }
+      }
+    },
+    beforeMount(){
+        // this.currentRouter=this.$route.path;
+    },
+    mounted(){
+        for(let i=0;i<this.items.length;i++){
+            if(this.$route.path.indexOf(this.items[i].gorouter)!=-1){
+            // if(this.$route.path==this.items[i].gorouter){
+                this.flag=i;
+
+            }
         }
     }
 
@@ -117,6 +143,8 @@ export default {
                 }
             }
         }
-        
+        .center{
+            flex:1;
+        }        
     }
 </style>

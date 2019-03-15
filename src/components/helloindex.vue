@@ -42,7 +42,7 @@ export default {
                  {
                     name:"风险管控",
                     iconfont:'element-icons el-iconsaoyisao',
-                    gorouter:"/home/control/riskList"
+                    gorouter:"/home/control"
                 },
                  {
                     name:"隐患管理",
@@ -55,7 +55,8 @@ export default {
                     gorouter:"/home/system"
                 },
             ],
-            flag:1
+            flag:1,
+            currentRouter:'/home'
         }
     },
     methods:{
@@ -64,8 +65,26 @@ export default {
             this.$router.push({path:gorouter});
             
         }
-    }
+    },
+    watch:{
+      '$route':function(to,from){
+          console.log(to.path)
+           for(let i=0;i<this.items.length;i++){
+                if(to.path.indexOf(this.items[i].gorouter)!=-1){
+                    this.flag=i;
+                }
+            }
+      }
+    },
+    mounted(){
+        console.log(this.$route.path)
+        for(let i=0;i<this.items.length;i++){
+            if(this.$route.path.indexOf(this.items[i].gorouter)!=-1){
+                this.flag=i;
 
+            }
+        }
+    }
 }
 </script>
 

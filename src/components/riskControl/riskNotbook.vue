@@ -1,5 +1,5 @@
 <template>
-    <div class="enterpriseIndex">
+    <div class="riskbook">
         <!-- <header class="header">
             <div class="head_left"></div>
         </header> -->...
@@ -9,18 +9,21 @@
 
 <script>
 export default {
-    name: "enterpriseIndex",
+    name: "riskNotbook",
     data(){
         return {
-
+            tableData:[],
         }
+    },
+    methods:{
+        arraySpanMethod(){},
     }
 
 }
 </script>
 
 <style scoped lang="scss">
-    .header{
+    .riskbook{
         height:70px;
         .head_left{
             background: url(/static/icons/logo.png) no-repeat;
