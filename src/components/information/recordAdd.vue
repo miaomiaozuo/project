@@ -2,7 +2,7 @@
     <div class="riskIndex">
         <div class="buttoncrowd top_header">
             <div style="float:left">
-                <span class="risktitle" >添加风险点 </span>
+                <span class="risktitle" >添加</span>
             </div>
             <div style="float:right;border:none;">
                 <el-button size="mini"  type="primary" @click="goBack">返回</el-button>
@@ -10,22 +10,21 @@
         </div>
         <div class="buttoncrowd top_content">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="160px" class="demo-ruleForm">
-                <el-form-item label="风险点名称：" prop="name">
+                <el-form-item label="名称：" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
-                <el-form-item label="评估对象类型：" prop="type">
-                    <el-checkbox-group v-model="ruleForm.type">
-                    <el-checkbox label="设备" name="type"></el-checkbox>
-                    <el-checkbox label="作业" name="type"></el-checkbox>
-                    <el-checkbox label="原材料" name="type"></el-checkbox>
-                    <el-checkbox label="厂房环境" name="type"></el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="风险定位：" prop="resource">
-                    <el-radio-group v-model="ruleForm.resource">
-                    <el-radio label="线上品牌商赞助"></el-radio>
-                    <el-radio label="线下场地免费"></el-radio>
-                    </el-radio-group>
+                <el-form-item label="资料："><el-upload
+                    class="upload-demo"
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    :on-preview="handlePreview"
+                    :on-remove="handleRemove"
+                    :before-remove="beforeRemove"
+                    multiple
+                    :limit="1"
+                    :on-exceed="handleExceed"
+                    :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
                 </el-form-item>
                 <el-form-item label="备注信息：" prop="desc">
                     <el-input type="textarea" v-model="ruleForm.desc"></el-input>
@@ -68,14 +67,27 @@ export default {
                 desc: [
                     { required: true, message: '请填写备注信息', trigger: 'blur' }
                 ]
-            }
+            },
+            fileList:[]
         }
     },
     methods:{
         arraySpanMethod(){},
         goBack(){
-                this.$router.push({path:'/home/control',name:'riskList'})
+                this.$router.push({path:'/home/information/record',name:'record'})
             
+        },
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePreview(file) {
+            console.log(file);
+        },
+        handleExceed(files, fileList) {
+            this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+        },
+        beforeRemove(file, fileList) {
+            return this.$confirm(`确定移除 ${ file.name }？`);
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {

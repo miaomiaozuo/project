@@ -1,6 +1,10 @@
 <template>
     <div class="hello">
+        <div class="logo">
+            <img src="/static/icons/logo.png" alt="">
+        </div>
         <div class="loginContent">
+            
             <h4>用户登录</h4>
             <div class="loginForm">
                 <el-form ref="ruleForm" :model="ruleForm" :rules="rules" >
@@ -60,12 +64,30 @@ export default {
     background-size: 100% 100%;
     position: relative;
 }
+.logo{
+    width: 100%;
+    min-height:200px;
+    text-align: center;
+    position: relative;
+    img{
+      
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right:0;
+          display: inline-block;
+        width:20%;
+        height:44%;
+        margin:auto;
+    }
+}
 .loginContent{
     width: 580px;
     height: 360px;
     margin:auto ;
     vertical-align: middle;
-    background: url(/static/icons/login_contentbg.png) no-repeat;
+    // background: url(/static/icons/login_contentbg.png) no-repeat;
     position: absolute;
     left:0;
     right:0;
@@ -84,10 +106,11 @@ export default {
         width: 60%;
         height: 40px;
         line-height: 40px;
-        font-size: 14px;
+        font-size: 18px;
         border-radius:4px;
         color: #fff;
-        background-color:#5187f4;
+        background:url('/static/icons/logobtn.png') no-repeat;
+        background-size: 100% 100%;
         margin:20px auto 0;
         border-radius: 4px;
         cursor: pointer;

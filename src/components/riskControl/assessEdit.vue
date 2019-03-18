@@ -2,7 +2,7 @@
     <div class="riskIndex">
         <div class="buttoncrowd top_header">
             <div style="float:left">
-                <span class="risktitle" >添加评估</span>
+                <span class="risktitle" >编辑评估</span>
             </div>
             <div style="float:right;border:none;">
                 <el-button size="mini"  type="primary" @click="goBack">返回</el-button>
@@ -138,7 +138,7 @@ export default {
     .riskIndex{
        width: 100%;
        height: 100%;
-       .top_header{
+        .top_header{
             background: #fff;
             padding:10px 10px 0;
             margin-bottom: 20px;

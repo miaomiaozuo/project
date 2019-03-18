@@ -1,13 +1,13 @@
 <template>
     <div class="riskIndex">
-        <div class="buttoncrowd">
+        <div class="buttoncrowd top_header">
             <div>
                 <span class="risktitle" >管控措施清单</span>
             </div>
            
             
         </div>
-        <div class="buttoncrowd">
+        <div class="buttoncrowd top_content">
             <el-table :data="tableData" :span-method="arraySpanMethod"  border stripe style="width: 100%;">
             <el-table-column type="selection"  width="35"> </el-table-column>
                 <el-table-column align="center" prop="assetNumber" label="序号" >
@@ -101,8 +101,18 @@ export default {
     .riskIndex{
        width: 100%;
        height: 100%;
+        .top_header{
+            background: #fff;
+            padding:10px 10px 0;
+            margin-bottom: 20px;
+        }
+        .top_content{
+            border:1px solid #eee;
+            background: #fff;
+            margin:0 20px 0;
+            padding-top:30px;
+        }
         .buttoncrowd{
-            margin:10px;
             clear: both;
             min-height: 30px;
             div{

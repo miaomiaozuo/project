@@ -1,19 +1,22 @@
 <template>
     <div class="riskIndex">
-        <div class="buttoncrowd">
+        <div class="buttoncrowd top_header">
             <div style="float:left;">
                 <span class="risktitle">风险辨识清单</span>
             </div>
             <div style="float:right;">
                 <el-button size="mini"  type="primary" @click="goAdd(1)" >添加风险点</el-button>
                 <el-button size="mini"  type="primary" @click="goAdd(2)">添加评估</el-button>
-                <el-button size="mini"  type="primary">导出数据</el-button>
-                <el-button size="mini"  type="primary">导入数据</el-button>
-                <el-button size="mini"  type="warning">删除</el-button>
+                <el-button size="mini"  type="primary" @click="exportData()">导出数据</el-button>
+                <el-button size="mini"  type="primary">
+                    <el-upload  :show-file-list="false" name="file" :action='imports'  :on-success="cardFrontSuccess" :on-error="this.handleError" >导入数据
+                    </el-upload>
+                </el-button>
+                <el-button size="mini"  type="warning" @click="deleteData()">删除</el-button>
             </div>
             
         </div>
-        <div class="buttoncrowd">
+        <div class="buttoncrowd top_content">
             <el-table :data="tableData" :span-method="arraySpanMethod"  border stripe style="width: 100%;">
             <el-table-column type="selection"  width="35"> </el-table-column>
                 <el-table-column align="center" prop="assetNumber" label="序号" >
@@ -85,7 +88,20 @@ export default {
     name: "riskList",
     data(){
         return {
+            imports:"导入数据路径",
             tableData:[
+                {
+                    assetNumber:'1',
+                    contractCode:'12',
+                    purchaseOrder:'3',
+                    amount:'4',
+                    payDateFormat:'5',
+                    receiveEnterpriseName:'6',
+                    statusName:'7',
+                    createTimeFormat:'8',
+                    id:'123',
+
+                },
                 {
                     assetNumber:'1',
                     contractCode:'12',
@@ -115,6 +131,48 @@ export default {
             }else if(ind==2){
                 this.$router.push({path:'/home/control/assessAdd',name:'assessAdd'})
             }
+        },
+        exportData(){//导出数据
+             this.$alert('确认要导出风险识别数据吗？','系统提示', {
+                confirmButtonText: '确定',
+                center: true,
+                callback: action => {
+                    this.$message({
+                    type: 'info',
+                    message: `action: ${ action }`
+                    });
+                }
+            });
+
+        },
+        cardFrontSuccess(res,file){//导入数据
+            if(res.state==200){
+                this.$alert(res.msg,"温馨提示", {
+                  confirmButtonText: '确定',
+                  callback:action=>{
+                    // this.init(this.datas);
+                  }
+                });
+            }else{
+                this.$alert(res.msg,"温馨提示", {
+                    // confirmButtonText: '确定',
+                })
+            }
+
+        },
+        handleError(){//上传错误
+        },
+        deleteData(){//删除数据
+            this.$alert('确认要导出风险识别数据吗？','系统提示', {
+                confirmButtonText: '确定',
+                center: true,
+                callback: action => {
+                    this.$message({
+                    type: 'info',
+                    message: `action: ${ action }`
+                    });
+                }
+            });
         }
     }
 
@@ -125,8 +183,18 @@ export default {
     .riskIndex{
        width: 100%;
        height: 100%;
+        .top_header{
+            background: #fff;
+            padding:10px 10px 0;
+            margin-bottom: 20px;
+        }
+        .top_content{
+            border:1px solid #eee;
+            background: #fff;
+            margin:0 20px 0;
+            padding-top:30px;
+        }
         .buttoncrowd{
-            margin:10px;
             clear: both;
             min-height: 30px;
             div{
