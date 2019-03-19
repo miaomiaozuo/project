@@ -104,6 +104,8 @@ export default {
             margin:0 20px;
             text-align: left;
             img{
+                width: 100%;
+                height: 100%;
                 margin-top:10px;
             }
             

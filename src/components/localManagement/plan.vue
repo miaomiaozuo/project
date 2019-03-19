@@ -1,0 +1,149 @@
+<template>
+    <div class="riskIndex">
+        <div class="buttoncrowd top_header">
+            <div style="float:left;">
+                <span class="risktitle   active">平面图  </span>
+                <span class="risktitle"  @click="organize(2)">建构筑物列表  </span>
+                <span class="risktitle"  @click="organize(3)">防火间距表  </span>
+            </div>
+            <!-- <div style="float:right;">
+                <el-button size="mini"  type="primary" @click="goAdd(1)" >添加建构筑物</el-button>
+                <el-button size="mini"  type="primary" @click="setDistance()">设置间距</el-button>
+                 <el-button size="mini"  type="primary" @click="exportData()">导出</el-button>
+                <el-button size="mini"  type="primary">
+                    <el-upload  :show-file-list="false" name="file" :action='imports'  :on-success="cardFrontSuccess" :on-error="this.handleError" >导入
+                    </el-upload>
+                </el-button>
+                <el-button size="mini"  type="warning" @click="deleteData()">删除</el-button>
+            </div> -->
+            
+        </div>
+        <div class="buttoncrowd top_content">
+            
+        </div>
+        
+    </div>  
+</template>
+
+<script>
+export default {
+    name: "distancelist",
+    
+    data(){
+        return {
+           imports:'',
+        }
+    },
+    methods:{
+        arraySpanMethod(){},
+        goAdd(ind){//添加跳转
+            this.$router.push({path:'/home/local/buildAdd',name:'buildAdd',query:{
+                'ind':ind}})
+        },
+        detailRoute(ind,id){//编辑页面跳转
+            this.$router.push({path:'/home/local/buildAdd',name:'buildAdd',
+                query:{
+                    'ind':ind,
+                    'id':id
+                }
+            })
+            
+        },
+        organize(ind){
+            if(ind==1){
+                this.$router.push({path:'/home/local/plan',name:'plan'})
+                    
+            }else if(ind==2){
+                this.$router.push({path:'/home/local',name:'building'})
+                
+            }else if(ind==3){
+                this.$router.push({path:'/home/local/distancelist',name:'distancelist'})
+                
+            }
+        },
+        exportData(){//导出数据
+             this.$alert('确认要导出风险识别数据吗？','系统提示', {
+                confirmButtonText: '确定',
+                center: true,
+                callback: action => {
+                    this.$message({
+                    type: 'info',
+                    message: `action: ${ action }`
+                    });
+                }
+            });
+
+        },
+        cardFrontSuccess(res,file){//导入数据
+            if(res.state==200){
+                this.$alert(res.msg,"温馨提示", {
+                  confirmButtonText: '确定',
+                  callback:action=>{
+                    // this.init(this.datas);
+                  }
+                });
+            }else{
+                this.$alert(res.msg,"温馨提示", {
+                    // confirmButtonText: '确定',
+                })
+            }
+
+        },
+        handleError(){//上传错误
+        },
+        deleteData(){//删除数据
+            this.$alert('确认要导出风险识别数据吗？','系统提示', {
+                confirmButtonText: '确定',
+                center: true,
+                callback: action => {
+                    this.$message({
+                    type: 'info',
+                    message: `action: ${ action }`
+                    });
+                }
+            });
+        }
+    }
+
+}
+</script>
+
+<style scoped lang="scss">
+    .riskIndex{
+       width: 100%;
+       height: 100%;
+        .top_header{
+            background: #fff;
+            padding:10px 10px 0;
+            margin-bottom: 20px;
+        }
+        .top_content{
+            border:1px solid #eee;
+            background: #fff;
+            margin:0 20px 0;
+            padding:30px 20px;
+        }
+        .buttoncrowd{
+            clear: both;
+            min-height: 30px;
+            div{
+                .risktitle{
+                    color:#333;
+                    text-decoration: none;
+                    padding:0 10px 5px;
+                    font-size: 14px;
+                    &.active{
+                        border-bottom:4px solid #409eff;
+                        
+                    }
+                }
+            }
+        }
+       .el-popover .tableUl{
+            b{
+                display: inline-block;
+                width:100px;
+            }
+        }
+    }
+</style>

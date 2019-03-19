@@ -2,7 +2,7 @@
     <div class="riskIndex">
         <div class="buttoncrowd top_header">
             <div style="float:left">
-                <span class="risktitle" >{{titleName}}</span>
+                <span class="risktitle" >添加建构筑物 </span>
             </div>
             <div style="float:right;border:none;">
                 <el-button size="mini"  type="primary" @click="goBack">返回</el-button>
@@ -10,72 +10,34 @@
         </div>
         <div class="buttoncrowd top_content">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="160px" class="demo-ruleForm">
-                <el-form-item label="资料："><el-upload
-                    class="upload-demo"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :before-remove="beforeRemove"
-                    multiple
-                    :limit="1"
-                    :on-exceed="handleExceed"
-                    :file-list="fileList">
-                    <el-button size="small" type="primary">点击上传</el-button>
-                    </el-upload>
-                </el-form-item>
-                <el-form-item label="归属部门：" prop="name">
-                    <el-input  v-model="ruleForm.name"  suffix-icon="el-icon-circle-plus-outline" @focus="alertMark()"></el-input> 
-                </el-form-item>
-                <el-form-item label="工号：" prop="name">
+                <el-form-item label="名称：" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
-                <el-form-item label="姓名：" prop="name">
+                <el-form-item label="层数：" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
-               
-                <el-form-item label="职位/岗位：" prop="name">
-                   <el-select v-model="ruleForm.region" placeholder="请选择部门类型"  suffix-icon="el-icon-arrow-down">
-                        <el-option label="区域一" value="shanghai"></el-option>
-                        <el-option label="区域二" value="beijing"></el-option>
+                <el-form-item label="高度（m）：" prop="name">
+                    <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+                <el-form-item label="建筑结构：" prop="name">
+                    <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+                <el-form-item label="占地面积（m²）：" prop="name">
+                    <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+               <el-form-item label="防火等级：">
+                    <el-select v-model="ruleForm.region" placeholder="请选择">
+                    <el-option label="一级" value="shanghai"></el-option>
+                    <el-option label="二级" value="beijing"></el-option>
                     </el-select>
                 </el-form-item>
-                 <el-form-item label="登录名：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-               <el-form-item label="密码：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="确认密码：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="邮箱：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="电话：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="手机：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="是否允许登录：" prop="name">
-                   <el-select v-model="ruleForm.region" placeholder="请选择">
-                        <el-option label="是" value="shanghai"></el-option>
-                        <el-option label="否" value="beijing"></el-option>
+                <el-form-item label="火灾危险性：">
+                    <el-select v-model="ruleForm.region" placeholder="请选择">
+                    <el-option label="严重" value="shanghai"></el-option>
+                    <el-option label="较轻" value="beijing"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="用户类型：" prop="name">
-                   <el-select v-model="ruleForm.region" placeholder="请选择">
-                        <el-option label="专业户" value="shanghai"></el-option>
-                        <el-option label="散户" value="beijing"></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="用户角色："  prop="name">
-                    <el-checkbox-group v-model="ruleForm.name">
-                    <el-checkbox label="公司管理员" name="type"></el-checkbox>
-                    <el-checkbox label="外部用户" name="type"></el-checkbox>
-                    </el-checkbox-group>
-                </el-form-item>
-                <el-form-item label="备注：" prop="desc">
+                <el-form-item label="备注信息：" prop="desc">
                     <el-input type="textarea" v-model="ruleForm.desc"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -93,7 +55,6 @@ export default {
     data(){
         return {
             titleName:"添加",
-            dialogTableVisible:false,
             ruleForm: {
                 name: '',
                 region: '',
@@ -118,8 +79,7 @@ export default {
                 desc: [
                     { required: true, message: '请填写备注信息', trigger: 'blur' }
                 ]
-            },
-            fileList:[]
+            }
         }
     },
     methods:{
@@ -142,19 +102,8 @@ export default {
         },
         arraySpanMethod(){},
         goBack(){
-                this.$router.push({path:'/home/information/organizePeople',name:'organizePeople'})
-        },
-        handleRemove(file, fileList) {
-            console.log(file, fileList);
-        },
-        handlePreview(file) {
-            console.log(file);
-        },
-        handleExceed(files, fileList) {
-            this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-        },
-        beforeRemove(file, fileList) {
-            return this.$confirm(`确定移除 ${ file.name }？`);
+                this.$router.push({path:'/home/local',name:'building'});
+            
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
@@ -165,10 +114,6 @@ export default {
                 return false;
                 }
             });
-        },
-        alertMark(){//查询部门时点击出现弹框
-            console.log(1)
-           this.dialogTableVisible=true;
         },
     },
     created(){
@@ -191,7 +136,7 @@ export default {
             border:1px solid #eee;
             background: #fff;
             margin:0 20px 0;
-            padding-top:30px;
+            padding:30px 20px;
         }
         .buttoncrowd{
             clear: both;

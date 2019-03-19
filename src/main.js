@@ -13,6 +13,7 @@ import '@/assets/el-icon/iconfont.css';
 Vue.use(Element);
 
 
+console.log(Element);
 Vue.config.productionTip = false
 Vue.prototype.$http=axios;
 /* eslint-disable no-new */

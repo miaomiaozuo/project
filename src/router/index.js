@@ -15,6 +15,19 @@ import InformationIndex from '@/components/information/index';//企业信息
     import OrganizePAdd from '@/components/information/organizePAdd';//添加
 
 import LocalIndex from '@/components/localManagement/index';//现场管理
+    import Building from '@/components/localManagement/building';//建筑物列表
+    import Plan from '@/components/localManagement/plan';//平面图
+    import Distancelist from '@/components/localManagement/distancelist';//防火间距表
+    import Setdistance from '@/components/localManagement/setdistance';//设置防火间距
+    import BuildAdd from '@/components/localManagement/buildAdd';//建筑物添加
+    import Equipment from '@/components/localManagement/equipment';//设备设施
+    import Equiplist from '@/components/localManagement/equiplist';//设备设施列表
+    import Equiplistvery from '@/components/localManagement/EquiplistVery';//设备设施特种列表
+    import EquipAdd from '@/components/localManagement/equipAdd';//设备设施添加
+    // import Equipment from '@/components/localManagement/equipment';//设备设施
+    import Job from '@/components/localManagement/job';//作业活动
+    import Material from '@/components/localManagement/material';//原辅料
+
 import RiskControlIndex from '@/components/riskControl/index';//风险管理
     import RiskList from '@/components/riskControl/riskList';//风险辨识清单
     import DutyList from '@/components/riskControl/dutyList';//责任清单
@@ -99,7 +112,66 @@ export default new Router({
         {
             path: 'local', 
             name:'localIndex',
-            component: LocalIndex
+            component: LocalIndex,
+            children: [
+                {
+                    path: '/', 
+                    name:'building',
+                    component: Building
+                },
+                {
+                    path: 'plan', 
+                    name:'plan',
+                    component: Plan
+                },
+                {
+                    path: 'distancelist', 
+                    name:'distancelist',
+                    component: Distancelist
+                },
+                {
+                    path: 'setdistance', 
+                    name:'setdistance',
+                    component: Setdistance
+                },
+                {
+                    path: 'buildAdd', 
+                    name:'buildAdd',
+                    component: BuildAdd
+                },
+
+                {
+                    path: 'equip', 
+                    name:'equipment',
+                    component: Equipment
+                },
+                {
+                    path: 'equiplist', 
+                    name:'equiplist',
+                    component: Equiplist
+                },
+                {
+                    path: 'equipAdd', 
+                    name:'equipAdd',
+                    component: EquipAdd
+                },
+                {
+                    path: 'equiplistvery', 
+                    name:'equiplistvery',
+                    component: Equiplistvery
+                },
+                
+                {
+                    path: 'job', 
+                    name:'job',
+                    component: Job
+                },
+                {
+                    path: 'material', 
+                    name:'material',
+                    component: Material
+                },
+            ]
         },
         {
             path: 'control', 

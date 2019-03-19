@@ -2,7 +2,7 @@
     <div class="riskIndex">
         <div class="buttoncrowd top_header">
             <div style="float:left">
-                <span class="risktitle" >{{titleName}}</span>
+                <span class="risktitle" >添加 </span>
             </div>
             <div style="float:right;border:none;">
                 <el-button size="mini"  type="primary" @click="goBack">返回</el-button>
@@ -10,23 +10,32 @@
         </div>
         <div class="buttoncrowd top_content">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="160px" class="demo-ruleForm">
-                <el-form-item label="部门名称：" prop="name">
+                <el-form-item label="名称：" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
-                <el-form-item label="部门编码：" prop="name">
+                <el-form-item label="层数：" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
-                <el-form-item label="部门类型：" prop="name">
-                   <el-select v-model="ruleForm.region" placeholder="请选择部门类型">
-                        <el-option label="区域一" value="shanghai"></el-option>
-                        <el-option label="区域二" value="beijing"></el-option>
+                <el-form-item label="高度（m）：" prop="name">
+                    <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+                <el-form-item label="建筑结构：" prop="name">
+                    <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+                <el-form-item label="占地面积（m²）：" prop="name">
+                    <el-input v-model="ruleForm.name"></el-input>
+                </el-form-item>
+               <el-form-item label="防火等级：">
+                    <el-select v-model="ruleForm.region" placeholder="请选择">
+                    <el-option label="一级" value="shanghai"></el-option>
+                    <el-option label="二级" value="beijing"></el-option>
                     </el-select>
                 </el-form-item>
-               <el-form-item label="上级部门" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="主责任人：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
+                <el-form-item label="火灾危险性：">
+                    <el-select v-model="ruleForm.region" placeholder="请选择">
+                    <el-option label="严重" value="shanghai"></el-option>
+                    <el-option label="较轻" value="beijing"></el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="备注信息：" prop="desc">
                     <el-input type="textarea" v-model="ruleForm.desc"></el-input>
@@ -70,8 +79,7 @@ export default {
                 desc: [
                     { required: true, message: '请填写备注信息', trigger: 'blur' }
                 ]
-            },
-            fileList:[]
+            }
         }
     },
     methods:{
@@ -94,19 +102,8 @@ export default {
         },
         arraySpanMethod(){},
         goBack(){
-                this.$router.push({path:'/home/information/organizeApartment',name:'organizeApartment'})
-        },
-        handleRemove(file, fileList) {
-            console.log(file, fileList);
-        },
-        handlePreview(file) {
-            console.log(file);
-        },
-        handleExceed(files, fileList) {
-            this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-        },
-        beforeRemove(file, fileList) {
-            return this.$confirm(`确定移除 ${ file.name }？`);
+            this.$router.push({path:'/home/local/equiplist',name:'equiplist'});
+            
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
@@ -139,7 +136,7 @@ export default {
             border:1px solid #eee;
             background: #fff;
             margin:0 20px 0;
-            padding-top:30px;
+            padding:30px 20px;
         }
         .buttoncrowd{
             clear: both;
