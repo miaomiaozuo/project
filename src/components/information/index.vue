@@ -83,19 +83,20 @@ export default {
         display: flex;
         .left_center{
             display: inline-block;
-            width: 180px;
+            width: 250px;
             height: 100%;
             margin:0;
             padding:0;
             background: #2a3246;
             text-align: left;
             li{
+                width: 200px;
                 list-style: none;
                 color:#fff;
                 background: #21242a;
                 line-height: 40px;
                 font-size: 14px;
-                margin:0 10px;
+                margin:0 20px;
                 &.left_active{
                     background: #4a8efe;
                     color:#fff;
