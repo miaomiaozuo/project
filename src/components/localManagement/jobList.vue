@@ -2,9 +2,8 @@
     <div class="riskIndex">
         <div class="buttoncrowd top_header">
             <div style="float:left;">
-                <span class="risktitle " @click="organize(1)" >统计图  </span>
-                <span class="risktitle active">设备列表  </span>
-                <span class="risktitle"  @click="organize(3)">特种设备列表  </span>
+                <span class="risktitle"  @click="organize(1)">统计图  </span>
+                <span class="risktitle active">作业列表  </span>
             </div>
             <div style="float:right;">
                 <el-button size="mini"  type="primary" @click="goAdd(1)" >添加</el-button>
@@ -20,22 +19,25 @@
         <div class="buttoncrowd top_content">
             <el-table :data="tableData" :span-method="arraySpanMethod"  border stripe style="width: 100%;">
                 <el-table-column type="selection"  width="35"> </el-table-column>
-                <el-table-column align="center" prop="assetNumber" label="名称" >
+                <el-table-column align="center" prop="assetNumber" label="序号" >
                     <template slot-scope="scope"><span>{{scope.row.assetNumber }}</span></template>
                 </el-table-column>
-                <el-table-column align="center" prop="contractCode" label="层数" >
+                <el-table-column align="center" prop="contractCode" label="作业名称" >
                     <template slot-scope="scope"><span>{{scope.row.contractCode }}</span></template>
                 </el-table-column>
                 <el-table-column align="center" prop="purchaseOrder" label="高度" >
                     <template slot-scope="scope"><span>{{scope.row.purchaseOrder }}</span></template>
                 </el-table-column>
-                <el-table-column align="right" prop="amount"  label="占地面积（m²）" >
+                <el-table-column align="right" prop="amount"  label="类别" >
                     <template slot-scope="scope"><span>{{scope.row.amount }}</span></template>
                 </el-table-column>
-                <el-table-column align="center" prop="payDateFormat" label="防火等级" >
+                <el-table-column align="center" prop="payDateFormat" label="频次" >
                     <template slot-scope="scope"><span>{{scope.row.payDateFormat }}</span></template>
                 </el-table-column>
-                <el-table-column align="center" prop="receiveEnterpriseName" label="火灾危害性">
+                <el-table-column align="center" prop="receiveEnterpriseName" label="部门">
+                    <template slot-scope="scope"><span>{{scope.row.receiveEnterpriseName}}</span></template>
+                </el-table-column>
+                <el-table-column align="center" prop="receiveEnterpriseName" label="建构筑物">
                     <template slot-scope="scope"><span>{{scope.row.receiveEnterpriseName}}</span></template>
                 </el-table-column>
                 <el-table-column align="center" prop="handle" label="操作">
@@ -51,7 +53,7 @@
 
 <script>
 export default {
-    name: "equiplist",
+    name: "jobList",
     
     data(){
         return {
@@ -75,12 +77,12 @@ export default {
     methods:{
         arraySpanMethod(){},
         goAdd(ind){//添加跳转
-            this.$router.push({path:'/home/local/equipAdd',name:'equipAdd',query:{
+            this.$router.push({path:'/home/local/jobAdd',name:'jobAdd',query:{
                 'ind':ind}})
         },
         
         detailRoute(ind,id){//修改页面跳转
-            this.$router.push({path:'/home/local/equipAdd',name:'equipAdd',
+            this.$router.push({path:'/home/local/jobAdd',name:'jobAdd',
                 query:{
                     'ind':ind,
                     'id':id
@@ -90,13 +92,10 @@ export default {
         },
         organize(ind){
             if(ind==1){
-                this.$router.push({path:'/home/local/equip',name:'equipment'})
+                this.$router.push({path:'/home/local/job',name:'job'})
                     
             }else if(ind==2){
-                this.$router.push({path:'/home/local/equiplist',name:'equiplist'})
-                
-            }else if(ind==3){
-                this.$router.push({path:'/home/local/equiplistvery',name:'equiplistvery'})
+                this.$router.push({path:'/home/local/jobList',name:'jobList'})
                 
             }
         },

@@ -10,7 +10,8 @@
                 </li>
             </ul>
             <div class="header_right">
-
+                <div class="header_pic"><img src="/static/header3.png" alt=""></div>
+                <div class="header_name"><span> 您好，熙儿熙儿熙儿熙儿</span> <i class="el-icon-caret-bottom"></i></div>
             </div>
         </header>
         <router-view></router-view>
@@ -114,6 +115,7 @@ export default {
             flex:1;
             display: flex;
             margin:0;
+            padding-left: 0;
             li{
                 flex:1;
                 list-style: none;
@@ -146,7 +148,36 @@ export default {
             }
         }
         .header_right{
-            width: 180px;
+            width: 200px;
+            >div{
+                display: inline-block;
+            }
+            .header_pic{
+                width: 30px;
+                height: 30px;
+                margin-top: 30px;
+                float: left;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                }
+            }
+            .header_name{
+                line-height: 90px;
+                color: #fff;
+                font-size: 14px;
+                span{
+                    max-width:120px ;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    float: left;
+                }
+                i{
+                    cursor: pointer;
+                }
+            }
         }
     }
 </style>

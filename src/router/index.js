@@ -24,8 +24,11 @@ import LocalIndex from '@/components/localManagement/index';//现场管理
     import Equiplist from '@/components/localManagement/equiplist';//设备设施列表
     import Equiplistvery from '@/components/localManagement/EquiplistVery';//设备设施特种列表
     import EquipAdd from '@/components/localManagement/equipAdd';//设备设施添加
+    import EquipspecialAdd from '@/components/localManagement/equipspecialAdd';//设备设施添加
     // import Equipment from '@/components/localManagement/equipment';//设备设施
     import Job from '@/components/localManagement/job';//作业活动
+    import JobList from '@/components/localManagement/jobList';//作业活动列表
+    import JobAdd from '@/components/localManagement/jobAdd';//添加
     import Material from '@/components/localManagement/material';//原辅料
 
 import RiskControlIndex from '@/components/riskControl/index';//风险管理
@@ -156,15 +159,30 @@ export default new Router({
                     component: EquipAdd
                 },
                 {
+                    path: 'equipspecialAdd', 
+                    name:'equipspecialAdd',
+                    component: EquipspecialAdd
+                },
+                
+                {
                     path: 'equiplistvery', 
                     name:'equiplistvery',
                     component: Equiplistvery
                 },
-                
                 {
                     path: 'job', 
                     name:'job',
                     component: Job
+                },
+                {
+                    path: 'jobList', 
+                    name:'jobList',
+                    component: JobList
+                },
+                {
+                    path: 'jobAdd', 
+                    name:'jobAdd',
+                    component: JobAdd
                 },
                 {
                     path: 'material', 

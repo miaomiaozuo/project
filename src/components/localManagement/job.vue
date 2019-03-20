@@ -2,7 +2,8 @@
     <div class="riskIndex">
         <div class="buttoncrowd top_header">
             <div style="float:left">
-                <span class="risktitle">风险统计</span>
+                <span class="risktitle active" >统计图  </span>
+                <span class="risktitle " @click="organize(2)">作业列表  </span>
             </div>
            <div style="float:right;" class="riskB">
                 <div class="important"><i></i>重大风险</div>
@@ -19,12 +20,7 @@
             <div class="charts" >
                 <div id="myChartTwo" class="chartImg"></div> 
             </div>  
-            <div class="charts" >
-                <div id="PieOne" class="chartImg"></div> 
-            </div>  
-            <div class="charts" >
-                <div id="PieTwo" class="chartImg"></div> 
-            </div>      
+           
             <div class="charts" >
                 <div id="myChartThree" class="chartImg"></div> 
             </div>      
@@ -42,6 +38,7 @@ require('echarts/lib/chart/bar');
 require('echarts/lib/chart/pie');
 require('echarts/lib/component/tooltip');
 require('echarts/lib/component/title');
+require("echarts/lib/component/legend");
 export default {
     name: "riskList",
     data(){
@@ -51,6 +48,15 @@ export default {
     },
     methods:{
         arraySpanMethod(){},
+        organize(ind){
+            if(ind==1){
+                this.$router.push({path:'/home/local/job',name:'job'})
+                    
+            }else if(ind==2){
+                this.$router.push({path:'/home/local/jobList',name:'jobList'})
+                
+            }
+        },
         drawLine(){
             let myChart = echarts.init(document.getElementById('myChart'));
             let myCharts = echarts.init(document.getElementById('myChartTwo'));
@@ -122,73 +128,10 @@ export default {
             myChartFour.setOption(option)
 
         },
-        drawPie(){
-            let PieChartsOne = echarts.init(document.getElementById('PieOne'));
-            let PieChartsTwo = echarts.init(document.getElementById('PieTwo'));
-            
-            let option = {
-                title : {
-                    text: '',
-                    subtext: '',
-                    x:'center'
-                },
-                series : [
-                    {
-                        name: '',
-                        type: 'pie',
-                        radius :[ "20%",'80%'],
-                        center: ['50%', '60%'],
-                        data:[
-                            {value:335, name:'111'},
-                            {value:310, name:'222'},
-                            {value:234, name:'333'},
-                            {value:135, name:'44'},
-                            {value:1548, name:'50'}
-                        ],
-                        labelLine: {
-                            normal: {
-                                show: false
-                            }
-                        },
-                        avoidLabelOverlap: false,
-                        itemStyle: {
-                            emphasis: {
-                            
-                            
-                            }
-                        },
-                        label: {
-                            normal: {
-                                show: false,
-                                position: 'inside'
-                            },
-                            emphasis: {
-                                show: true,
-                                textStyle: {
-                                    fontSize: '30',
-                                    fontWeight: 'bold'
-                                }
-                            }
-                        }
-                    }
-                ]
-            }; 
-             if(PieChartsOne){
-                option.title.text="公司固有风险分布图";
-                option.series[0].data=[{value:0.2,name:'111',itemStyle:{color:"#333"}},{value:1,name:'111',itemStyle:{color:"#cf0812"}}];
-                
-            }
-            PieChartsOne.setOption(option);
-            if(PieChartsTwo){
-                option.title.text="公司现有风险分布图";
-                option.series[0].data=[{value:0.6,name:'111',itemStyle:{color:"#333"}},{value:0.6,name:'111',itemStyle:{color:"#eee"}},{value:0.1,name:'111',itemStyle:{color:"#cf0812"}}];
-            }
-            PieChartsTwo.setOption(option);
-        }
+       
     },
     mounted(){
         this.drawLine();
-        this.drawPie();
     }
 
 }
@@ -215,10 +158,13 @@ export default {
             div{
                 .risktitle{
                     color:#333;
-                    border-bottom:4px solid #409eff;
                     text-decoration: none;
-                    padding:0 5px 5px;
+                    padding:0 10px 5px;
                     font-size: 14px;
+                    &.active{
+                        border-bottom:4px solid #409eff;
+                        
+                    }
                 }
                
             }

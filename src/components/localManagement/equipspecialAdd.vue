@@ -115,7 +115,7 @@ export default {
         },
         arraySpanMethod(){},
         goBack(){
-            this.$router.push({path:'/home/local/equiplist',name:'equiplist'});
+            this.$router.push({path:'/home/local/equiplistvery',name:'equiplistvery'});
             
         },
         submitForm(formName) {

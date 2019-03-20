@@ -33,11 +33,28 @@ require('echarts/lib/chart/bar');
 require('echarts/lib/chart/pie');
 require('echarts/lib/component/tooltip');
 require('echarts/lib/component/title');
+require("echarts/lib/component/legend");
 export default {
     name: "equipment",
     data(){
         return {
-           
+           imgData:[
+               {
+                   name:'1',
+                   color:'#333',
+                   value:0.2,
+               },
+               {
+                   name:'2',
+                   color:'yellow',
+                   value:0.5
+               },
+               {
+                   name:'3',
+                   color:'red',
+                   value:0.1
+               }
+           ]
         }
     },
     methods:{
@@ -48,7 +65,7 @@ export default {
             let myChartThree = echarts.init(document.getElementById('myChartThree'));
             
             let option={
-                color: ['#3398DB'],
+                // color: ['#3398DB'],
                 title : {
                     text: '各部门固有风险分布图',
                 },
@@ -78,39 +95,76 @@ export default {
                     }
                 ],
                 legend: {
-                    x: 'right',
-                    data: [{name:'特种设备',icon:'circle',textStyle:'red'},{name:'炉类',icon:'circle',textStyle:'red'},{name:'专用仪器仪表',icon:'circle',textStyle:'red'}],
+                    data: ['特种设备','炉类','专用仪器仪表'],
                    
                 },
                 series : [
                     {
-                        name:'直接访问',
+                        name:'特种设备',
                         type:'bar',
+                        normal: {
+                        // 随机显示
+                        //color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+                    
+                        // 定制显示（按顺序）
+                        color: function(params) { 
+                            var colorList = ['#C33531','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ]; 
+                            return colorList[params.dataIndex] 
+                        }
+                    },
                         barWidth: '26%',
-                        data:[{value:0.2,itemStyle:{color:"#333"}},{value:1,itemStyle:{color:"#cf0812"}}],
+                        data:[0.2,0.8,0.3,0.5],
                         
                     },
+                   
                     
                 ]
             };
-            if(myChart){
-                option.title.text="各类型设备统计";
-                option.xAxis[0].data= ['特种设备', '炉类','通用机械','专用仪器仪表'];
-                option.series[0].data=[{value:0.2,itemStyle:{color:"#409eff"}},{value:1,itemStyle:{color:"#409eff"}},{value:1,itemStyle:{color:"#409eff"}},{value:1,itemStyle:{color:"#409eff"}}];
-                
-            }
+                //  option.series=[];
+           
+            
+            // if(myChart){
+            //     option.title.text="各类型设备统计";
+            //     option.xAxis[0].data= ['特种设备', '炉类','通用机械','专用仪器仪表'];
+            //     option.legend.data=['1','2','3']
+            //     let array=[];
+            //     option.color=['#333','yellow','red'];
+            //     for(let i=0;i<this.imgData.length;i++){
+            //         let outobj={};
+            //         let arr=[];
+            //         let obj={}
+            //         let objstyle={};
+            //         objstyle.color=this.imgData[i].color
+            //         obj.value=this.imgData[i].value;
+            //         obj.itemStyle=objstyle;
+            //         arr.push(obj);
+            //         outobj.name=this.imgData[i].name;
+            //         outobj.type="bar";
+            //         outobj.data=arr;
+                    
+            //         array.push(outobj);
+
+            //     }
+            //      console.log(array);
+            //     console.log(option.series=array)
+            //     // option.series[0]=array;
+               
+            // }
+           
             myChart.setOption(option);
             if(myCharts){
                 option.title.text="各类型设备统计";
                 option.xAxis[0].data= ['特种设备', '炉类','通用机械','专用仪器仪表'];
-                option.series[0].data=[{value:0.6,itemStyle:{color:"#333"}},{value:0.1,itemStyle:{color:"#cf0812"}}];
+                
+                // option.series[0]=[{value:0.6,itemStyle:{color:"#333"}},{value:0.1,itemStyle:{color:"#cf0812"}}];
+                
             }
             myCharts.setOption(option)
             if(myChartThree){
                 option.title.text="各类型设备统计";
-                option.xAxis[0].data= ['特种设备','通用机械', '炉类','专用仪器仪表'];
+                option.xAxis[0].data= ['1','2', '3','4'];
                 
-                option.series[0].data=[{value:0.2,itemStyle:{color:"#333"}},{value:1,itemStyle:{color:"#cf0812"}}];
+                // option.series[0].data=[{value:0.2,itemStyle:{color:"#333"}},{value:1,itemStyle:{color:"#cf0812"}}];
                 
             }
             myChartThree.setOption(option);

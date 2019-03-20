@@ -10,7 +10,7 @@
         </div>
         <div class="buttoncrowd top_content">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="160px" class="demo-ruleForm">
-                <el-form-item label="名称：" prop="name">
+                <el-form-item label="作业名称：" prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="类别：">
@@ -19,35 +19,18 @@
                     <el-option label="二级" value="beijing"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="规格/型号" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="功率（kw）：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label='部门：' prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="位号：" prop="name">
-                    <el-input v-model="ruleForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="采购时间：">
-                    <el-col :span="8">
-                    <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.name" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="检查时间：">
-                    <el-col :span="8">
-                    <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.name" style="width: 100%;"></el-date-picker>
-                    </el-col>
-                </el-form-item>
-                <el-form-item label="设备状态：">
+                 <el-form-item label="频次：">
                     <el-select v-model="ruleForm.region" placeholder="请选择">
-                    <el-option label="严重" value="shanghai"></el-option>
-                    <el-option label="较轻" value="beijing"></el-option>
+                    <el-option label="一级" value="shanghai"></el-option>
+                    <el-option label="二级" value="beijing"></el-option>
                     </el-select>
                 </el-form-item>
-                 <el-form-item label='生产厂家：' prop="name">
+               
+                <el-form-item label='部门：' prop="name">
+                    <el-input v-model="ruleForm.name" suffix-icon="el-icon-circle-plus-outline"></el-input>
+                </el-form-item>
+                
+                 <el-form-item label='建构筑物：' prop="name">
                     <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="备注信息：" prop="desc">
@@ -115,7 +98,7 @@ export default {
         },
         arraySpanMethod(){},
         goBack(){
-            this.$router.push({path:'/home/local/equiplist',name:'equiplist'});
+            this.$router.push({path:'/home/local/job',name:'job'});
             
         },
         submitForm(formName) {
