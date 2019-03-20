@@ -56,7 +56,20 @@ export default {
     data(){
         return {
            imports:'',
-           tableData:[],
+           tableData:[
+                {
+                    assetNumber:'1',
+                    contractCode:'12',
+                    purchaseOrder:'3',
+                    amount:'4',
+                    payDateFormat:'5',
+                    receiveEnterpriseName:'6',
+                    statusName:'7',
+                    createTimeFormat:'8',
+                    id:'123',
+
+                }
+            ],
         }
     },
     methods:{
