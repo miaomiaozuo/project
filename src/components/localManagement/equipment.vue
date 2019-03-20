@@ -64,6 +64,11 @@ export default {
                         data : ['特种设备', '炉类','通用机械','专用仪器仪表'],
                         axisTick: {
                             alignWithLabel: true
+                        },
+                        axisLabel:{
+                            interval:0,
+                            rotate:0,
+                            align:'center'
                         }
                     }
                 ],
@@ -72,6 +77,11 @@ export default {
                         type : 'value'
                     }
                 ],
+                legend: {
+                    x: 'right',
+                    data: [{name:'特种设备',icon:'circle',textStyle:'red'},{name:'炉类',icon:'circle',textStyle:'red'},{name:'专用仪器仪表',icon:'circle',textStyle:'red'}],
+                   
+                },
                 series : [
                     {
                         name:'直接访问',
