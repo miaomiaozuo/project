@@ -19,7 +19,7 @@
               <div class="login-but"  
               @click="loginIndex('ruleForm')">登录</div>
             </div>
-            
+            这一句是我加上去试验的
         </div>
     
   </div>
